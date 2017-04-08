@@ -1,129 +1,40 @@
 {
-  "targets": {
+	"targets": {
+		"android": {
+			"buildenv": "trusty-amd64",
+			"submodules": ["android"],
+			"builddeps": {
+				"debs": [
+					"openjdk-7-jdk",
+					"cmake",
+					"git",
+					"build-essential",
+					"pkg-config",
+					"gettext",
+					"libavahi-client-dev",
+					"libssl-dev",
+					"zlib1g-dev",
+					"wget",
+					"bzip2",
+					"git-core",
+					"liburiparser-dev",
+					"python",
+					"dvb-apps"
+				],
 
-    "precise-amd64": {
-      "buildenv": "precise-amd64",
-      "builddeps": [
-        "cmake",
-        "git",
-        "build-essential",
-        "pkg-config",
-        "gettext",
-        "libavahi-client-dev",
-        "libssl-dev",
-        "zlib1g-dev",
-        "wget",
-        "bzip2",
-        "git-core",
-        "liburiparser-dev",
-        "python",
-        "dvb-apps"
-      ],
+				"android-sdk": [
+					"platform-tools",
+					"android-21",
+					"build-tools-21.1.2"
+				],
 
-      "buildcmd": [
-        "./configure --disable-dvbscan --enable-ffmpeg_static --disable-libx265_static --disable-libx265 --enable-hdhomerun_static",
-        "make -j ${PARALLEL}"
-      ]
-    },
+				"android-ndk": "http://dl.google.com/android/ndk/android-ndk-r10e-linux-x86.bin"
 
-    "precise-i386": {
-      "buildenv": "precise-i386",
-      "builddeps": [
-        "cmake",
-        "git",
-        "build-essential",
-        "pkg-config",
-        "gettext",
-        "libavahi-client-dev",
-        "libssl-dev",
-        "zlib1g-dev",
-        "wget",
-        "bzip2",
-        "git-core",
-        "liburiparser-dev",
-        "python",
-        "dvb-apps"
-      ],
-
-      "buildcmd": [
-        "./configure --disable-dvbscan --enable-ffmpeg_static --disable-libx265_static --disable-libx265 --enable-hdhomerun_static",
-        "make -j ${PARALLEL}"
-      ]
-    },
-
-    "trusty-amd64": {
-      "buildenv": "trusty-amd64",
-      "builddeps": [
-        "cmake",
-        "git",
-        "build-essential",
-        "pkg-config",
-        "gettext",
-        "libavahi-client-dev",
-        "libssl-dev",
-        "zlib1g-dev",
-        "wget",
-        "bzip2",
-        "git-core",
-        "liburiparser-dev",
-        "python",
-        "dvb-apps"
-      ],
-
-      "buildcmd": [
-        "./configure --disable-dvbscan --enable-ffmpeg_static --enable-hdhomerun_static",
-        "make -j ${PARALLEL}"
-      ]
-    },
-
-    "trusty-i386": {
-      "buildenv": "trusty-i386",
-      "builddeps": [
-        "cmake",
-        "git",
-        "build-essential",
-        "pkg-config",
-        "gettext",
-        "libavahi-client-dev",
-        "libssl-dev",
-        "zlib1g-dev",
-        "wget",
-        "bzip2",
-        "git-core",
-        "liburiparser-dev",
-        "python",
-        "dvb-apps"
-      ],
-
-      "buildcmd": [
-        "./configure --disable-dvbscan --enable-ffmpeg_static --enable-hdhomerun_static",
-        "make -j ${PARALLEL}"
-      ]
-    },
-
-    "xenial-amd64": {
-      "buildenv": "xenial-amd64",
-      "builddeps": [
-        "cmake",
-        "git",
-        "build-essential",
-        "pkg-config",
-        "gettext",
-        "libavahi-client-dev",
-        "libssl-dev",
-        "zlib1g-dev",
-        "wget",
-        "bzip2",
-        "git-core",
-        "liburiparser-dev",
-        "python",
-        "dvb-apps"
-      ],
-
-      "buildcmd": [
-        "./configure --disable-dvbscan --enable-ffmpeg_static --enable-hdhomerun_static",
-        "make -j ${PARALLEL}"
-      ]
-    }
-  }
+			},
+			"buildcmd": [
+				"./configure --disable-dvbscan --disable-avahi --disable-libav --disable-dbus_1 --disable-tvhcsa --enable-dvbcsa --enable-bundle --enable-android --arch=armeabi-v7a --disable-ffmpeg_static --disable-hdhomerun_static --cc=/android/android-ndk-r10e/toolchains/arm-linux-androideabi-4.9/prebuilt/linux-x86_64/bin/bin/arm-linux-androideabi-gcc",
+				"make -j ${PARALLEL}"
+			]
+		}
+	}
 }
